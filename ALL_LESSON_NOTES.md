@@ -281,8 +281,65 @@ Many parameters to play with:
 
 If we have to remember 1 thing, always **try to lower learning rate first**
 
+One aproach: ADAGRAD
 
+##### ADAGRAD
 
+This is an alternative to SGD that does momentum and learning rate decay automatically for us.
 
+This makes learning less sensitive to hyperparameters
 
+But it tends to be less accurate
+
+However it does the job
+
+### RECAP
+
+* We have a simple linear model
+* It emits probabilities
+* We can use probabilities for classification
+* We know how to optimize parameters
+    - We can use SGD and its variance to optimize
+
+# Intro to Deep Neural Networks
+
+We are now going to turn the linear regression model into a deep net
+
+## Linear Regression Model
+
+How many parameters did the previous model have? I think 10
+
+* The input is 28x28 = 784
+* But also the number of weights are 10
+* So the total number of parameters **is 7850**
+
+That is often the case: If you have N inputs and k outputs, you have (N+1) *k to use.
+
+This is also linear, so the amount of flexibility is low.
+
+* If two inputs interact in addition, then it would work
+* If two inputs interact as products, then it won't work
+
+Linear operations are really good - GPUs are made for linear computations.
+
+Linear operations are very stable.
+
+The derivatives are also constant - so it's stable.
+
+**We want to keep our parameters in linear models, but we would also want the entire model to be non-linear.**
+
+### Non-linearities
+
+The favourite function is **ReLU** - Rectified Linear Unit
+
+ReLUs are the simplest non-linear function that exist:
+
+* They are y>0 linearly when x > 0
+* And y=0 if x is less than 0
+
+## Network of ReLUs
+
+Instead of having a single matrix multiply as our classifier, we'll insert a ReLU in the middle, allowing us to have 2 matrixes.
+
+Going from the inputs to the ReLUs
 
