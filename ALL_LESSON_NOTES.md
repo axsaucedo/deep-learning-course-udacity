@@ -111,6 +111,138 @@ Then...
 **THEN REPEAT! Until we reach the minimum**
 
 
+During the exercise we had sets for:
+
+* Training
+* Validation
+* Testing
+
+Measuring performance is subtle.
+
+If we go to our classificaiton task, and try to predict some images and check how many we get right - that is the error measure.
+
+Now we measure with images that we've never seen but performance gets worse.
+
+Classifier doesn't do as well...
+
+Imagine we compare a classifier that just compares the new image to any of the oher images we've seen and just returns the label.
+
+It is a great classifier - but as soon as it sees a new image, it's lost.
+
+It has **memorized examples**, so now it has overtrained...
+
+Job is to **generalize to new data**.
+
+### How to quantify generalization?
+
+We take a small subset of training set, not using in training, adn measure the error on test data.
+
+This way classifier can't cheat.
+
+But there are some times where you tweak to your test data, but you might still have bad accuracy... so your classifier can see your test data **Through your own eyes** as you make choices of how you want to tweak your classifier
+
+So how to solve it?
+
+### Validation + Test Data
+
+To solve it, we take another chunk of out training set and **hide it under a rock**
+
+
+# Overfitting  Datasets
+
+We need to be careful about overfitting our dataset - we need to use a validation set.
+
+## Kaggle Challenge
+
+Classification platform for ML challenges
+
+A lot of the competitors submit models that work really well with them, but when they submit it, it works much worse.
+
+## Validation and Test Size
+
+Imagine we have a model with 66% accuracy
+
+And you make it go up to 83% 
+
+But this is not reliable... this might only be a change of label for a single example
+
+**The more data, the more accurate**
+
+A change that affects 30 labels, typcally can be trusted. 
+
+### The Rule of 30
+
+If we had 3000 examples, we would have to see a minimum of 1% improvement in order for it to be trusted.
+
+This is 1/100 * 3000 = 30.
+
+
+### Validation Set Size
+
+Holding less than 30,000 examples, show changes in 0.1 in accuracy.
+
+Only 30k examples can be a lot of data with a small training set
+
+Cross validation can be a good way, but it's often slow
+
+But getting more data is often the best.
+
+
+### Optimizing a logistic classifier
+
+Training logistic regression using gradient descent is great.
+For one thing you're directly optimizing for what we care about.
+In practice, a lot of ML is about designing the right loss function to optimize.
+
+**Big problem**
+It's very difficult to scale
+
+#### Stochastic Gradient Descent
+
+The problem with scaling gradient descent.
+
+If computing your loss takes N floating point operations, computing the gradient takes **3 times that amount**.
+
+The loss function is often quite large, which requires a lot of computation.
+
+Plus it needs to train in a lot of data.
+
+Because **gradient descent is iterative** we need to do this multiple times.
+
+#### Optimizing (Cheating)
+
+We instead can optimize by computing a **"terrible estimate"**.
+
+That estimate is so bad we'll wonder why it's right.
+
+We basically compute the average loss for a very small fraction of the data.
+
+Between 1 and 1000 samples each time.
+
+**It needs to be random**.
+
+We will need to take many more smaller steps.
+
+This is **Stochastic Gradient Descent**.
+
+It comes with a lot of issues in practice, but it works...
+
+### Helping Stochastic Gradient Descent
+
+* Inputs
+    - Mean needs to be close to ZERO
+    - Have equal variance (small)
+* Initial weights
+    - They have to be random
+    - Mean close to ZERO
+    - Equal variance (small too)
+
+
+
+
+
+
+
 
 
 
