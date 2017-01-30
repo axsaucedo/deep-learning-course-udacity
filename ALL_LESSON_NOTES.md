@@ -237,10 +237,49 @@ It comes with a lot of issues in practice, but it works...
     - Mean close to ZERO
     - Equal variance (small too)
 
+We need some rules:
 
+#### Momentum
 
+We are now taking small steps in almost random directions.
 
+We can take advantage of the knowledge we've gathered from previous gradients:
+> We can keep a running average of the gradients
+> And use running average instead of direction for current batch of data
 
+#### Learning Rate Decay
+
+When we switched to SGD, we said we were gonna take smaller steps
+
+**HOW SMALL SHOULD THE STEPS BE?**
+
+It's beneficial to take smaller and smaller steps
+
+Lowering gradient over time is key!
+
+#### Learning Rate Tuning
+
+Having a higher learning rate does not mean we are learning faster
+
+You can take a model, lower the learning rate, and **get to a better model faster**
+
+We might be tempted to have a look at a graph of the loss/steps:
+> A higher learning rate might start faster, but plateu faster
+> Whilst a lower learning rate might reach better optimization
+
+**Never trust how fast you learn, as that is not correlated with model quality!!**
+
+#### SGD Black Magic
+
+Many parameters to play with:
+
+* Initial learning rate
+* Learning rate decay 
+* Momentum
+* Batch Size
+* Weight initialization
+
+If we have to remember 1 thing, always **try to lower learning rate first**
 
 
 
