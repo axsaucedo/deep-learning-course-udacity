@@ -341,5 +341,143 @@ ReLUs are the simplest non-linear function that exist:
 
 Instead of having a single matrix multiply as our classifier, we'll insert a ReLU in the middle, allowing us to have 2 matrixes.
 
-Going from the inputs to the ReLUs
+Going from the inputs to the ReLUs - and anotherone connecting the ReLU.
+
+Now we have a new node we can tune. We can make it as big as we want.
+
+This is the biggest Neural Network.
+
+### The Chain Rule
+
+Stacking up simple operations
+
+One reason to chain up operations is because it makes math very simple
+
+A deep learning framework manages it for us
+
+The chain rule: Two functions composed, one applied to ouptut of other. You can compute the derivative by taking the product of the compoents.
+
+This is powerful - as long as you know how to write the derivatives of the individual functions, it's possible to bind them together and compute the whole function.
+
+There is a way to write the chain rule with very efficient computation and that looks like a very simple data pipeline.
+
+### Backprop
+
+* Imagine your net is a stack of operations - linear transforms, relus, etc.
+* Some have parameters, some don't like relus
+* To compute the derivatives
+    - the data of the graph flows backwards
+    - gets combined using the chain rule
+    - and it produces gradients
+    - That graph can be derived completely from individual operations in network
+
+This is called backpropagation
+
+Running model up to predictions is called forward propagation.
+
+### RECAP
+
+* To run stochastic gradient descent
+    - For every single batch of data
+    - We run the forward prop
+    - Then the backward prop
+    - That will give us gradients for each of the weights in our models
+    - Then we apply the gradients with the learning rates with our original weights
+* Repeat that all over again.
+
+This is how it's optimized
+
+## Training a Deep Network
+
+We managed to put together a 2-layer neural network, we can make it more complex by increasing the size of the layer in the middle.
+
+But increasing the H is not particulary efficient.
+
+You would have to make it very big but it would be hard to train.
+
+Instead you can add more layers and make the net deeper.
+
+### Deep networks
+
+You want to make it deeper because of:
+
+* Parameter efficiency
+    - More performance with less parameters going deeper
+* TEnds to have  a hierarchical structure  
+    - This is very good for things like images
+
+### History of deep net
+
+Deep models only shine if you have enough data to train them
+
+We know better today how to train very big models using regularization techniques.
+
+There is a general issue called the **skinny jeans problem** - Skinny jeans look good, but it's hard to get into them so you just wear slightly bigger. Same with Deep Networks - You can't know the exact right size, so we try nets that are too big for data and then **prevent them from overfitting.**
+
+
+## Overfitting
+
+### Early termination
+
+We stop training as soon as the model stops improving
+
+This is still the best way to avoid the network from overfitting
+
+### Regularization
+
+To apply regularization is applying artificial  constraints on network that implicitly reduce number of free parameters.
+
+L_2 regularization is an example - adding another term to the loss that penalizes the formula.
+
+### L2 Regularization
+
+The structure of the network doesn't have to change because you just add it to the loss.
+
+L2 norm is the sum of the squares of the weights.
+
+The derivative of 1/2 x**2 is x
+
+### Dropout
+
+* Imagine you have one layer connected to the other
+* The outputs are called activations
+* Take the activations, and for a random number of neurons set them to zero
+
+Net can never rely on any specific activaiton as it might be squashed, so it prevents overfitting
+
+#### Training & Evaluation
+
+We want something deterministic when measuring a network with dropout
+
+We want to take the conscensus of these redundant models
+
+You get consensus by averaging activations
+
+During training, not only use 0 activations, but also scale the remaining activations by 2
+
+The result is a number of these activations that is properly scaled
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
