@@ -457,6 +457,114 @@ During training, not only use 0 activations, but also scale the remaining activa
 
 The result is a number of these activations that is properly scaled
 
+# Convolutional Neural Network
+
+## Statistical Invariance
+
+You can reduce complexity of specific datasets. In images for example, if color doesn't matter you can reduce complexity by combining colour channels into a single monochromatic channel.
+
+In another image with a cat, you want to identify that it has cats, no matter where.
+
+If the network has to learn the same picture with the cat in multiple positions it would reduce complexity
+
+But if you can teach it that objects are the same no matter where in the screen
+
+This is called translation invariance - different positions, same kitten.
+
+Another example, having a long text , the meaning of the word "kitten" doesn't change no matter where it is.
+
+The way you achieve  this in Neural Networks is using **weight sharing.**
+
+And you **train the weights jointly** for those inputs.
+
+It's a very important idea - **statistical invariants** - things that don't change with time or space are everywhere!
+
+This is where Convolutional Neural Networks kicks in for images!
+
+For text - this is where Recurrent Neural Networks come in.
+
+## Convolutional Neural Networks
+
+Also called convnets 
+
+Convnets are Neural Networks that share params across space.
+
+Images can be represented as a 2d squere - because you have RGB channels, you have a depth.
+
+We'll take  a small patch of the image and run a Neural Network.
+
+Then we'll go through the image scanning patches, as if we were painting it with a brush  
+
+Now you have an output that has multiple channels.
+
+We have less weights, and shared across space.
+
+Instead of having stacks of multiplayed layers, we have convolutional layers.
+
+At first we have the image, then we apply convolutions that compress the symetric dyensions.
+
+At the top we put the classifier.
+
+If we are going to implement this, there is a lot of things to get right.
+
+### Patches
+
+Patches are often called **kernels**
+
+If you don't go outside the edge = **valid padding**
+If you have zero padding = **same padding**
+
+### Feature Map Sizes
+
+Imagine we have a 28x28 image
+We run a 3x3 convolution on it
+With an input depth = 3
+and output depth = 8
+
+## More about convolutions
+
+* Pooling
+* 1x1 convolutions
+* inception
+
+### Pooling
+
+We take all the convolutions and combine them.
+
+most common is max pooling: We take all the numbers from a specific stride, and just choose the largest.
+
+* This is good becuase it's parameter free
+* It's more accurate
+* But it's more expensive
+* It has more hyperparameters
+    - Pooling size
+    - Pooling stride
+
+A very typical architecture is one altrernating convolutions and pooling layers, followed by fully connected layers and finally the classifier.
+
+A common CNN is the Alexnet
+
+### Average pooling
+
+Instead of taking the max pooling, we can take the average pooling 
+
+Another idea is the 1x1 convolutions - but why should we use it?
+
+If we add a 1x1 patch, we would basically have a Neural Network before the convolutions, making the net deeper by default and have more parameters without changing the structure.
+
+## Inception Modules
+
+The idea is that at each layer of the convnet we can have a pooling op, convolution, etc.
+
+We ened to decide the size of the convolution
+
+Inception model requires you to have a composition of avg pooling foolowed by 5z5, and then concatenate the output
+
+You can choose the parameters in a way that the Neural Network performs better
+
+
+
+
 
 
 
